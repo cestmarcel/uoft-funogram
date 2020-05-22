@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    
+<style>
+    .card-img-top {
+        height: 20vh;
+        object-fit: cover;
+    }
+
+    .card-body {
+        height: 10vh;
+    }
+
+    #main-img {
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Funny pics!</h1>
+        <p class="lead">
+            <img id="main-img" class="img-thumbnail img-fluid" src="https://cdn.pixabay.com/photo/2015/12/06/20/35/photographer-1080008_960_720.jpg" />
+        </p>
+        <hr class="my-4">
+        <div id="thumbnail-list" class="row"></div>
+    </div>
+</div>
+
+<script>
+    var thumbnailSet = [
+        { url: 'https://i.imgflip.com/205fc0.jpg',
+          title: "Halloween witness"},
+        { url: 'https://cdn.pixabay.com/photo/2015/12/06/20/35/photographer-1080008_960_720.jpg',
+          title: "Smile you\'re on camera"},
+        { url: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg',
+          title: "Confused-happy cat"},
+        { url: 'https://static.boredpanda.com/blog/wp-content/uploads/2020/02/funny-hilarious-dog-snapchats-coverimage.jpg',
+          title: "Shocked dog"},
+        { url: 'https://images.immediate.co.uk/production/volatile/sites/4/2013/04/GettyImages-640318118-c83a508.jpg?quality=90&resize=940%2C400',
+          title: "Sunset"}
+    ];
+
+    // loop through our thumbnails and add them to our thumbnail list
+    for( var idx=0; idx<thumbnailSet.length; idx++ ){
+        var url = thumbnailSet[idx].url;
+        var title = thumbnailSet[idx].title;
+        document.querySelector("#thumbnail-list").innerHTML +=
+        `
+        <div class="col">
+            <div class="card">
+                    <img src="${url}" class="card-img-top"/>
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <button onClick="setPicture('${url}')" class="btn btn-primary">Show</button>
+                    </div>
+                </div>
+            </div>
+        `
+
+    }
+
+    function setPicture( url ){
+        console.log(`setting picture to: ${url}`);
+        document.querySelector('#main-img').src = url;
+    }
+</script>
+
+</body>
+</html>
